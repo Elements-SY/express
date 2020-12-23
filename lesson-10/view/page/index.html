@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>索引页</title>
+</head>
+
+<body>
+    <h2>the page of index</h2>
+    <a href="javascript:;">本接请求后台未使用接口转发</a>
+    <button onclick="sendGet()">to send get request</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000';
+
+        // 发送请求
+        function sendGet() {
+            axios.get('/sex', {
+                params: {
+                    sex: 'boy'
+                }
+            }).then(function (res) {
+                console.log(res);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+
+</html>

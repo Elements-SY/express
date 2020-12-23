@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>首页</title>
+</head>
+
+<body>
+   <h2>the page of home</h2>
+   <button onclick="sendPost()">to send post request</button>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script>
+      axios.defaults.baseURL = 'http://localhost:3000';
+      function sendPost() {
+         axios.post('/name', {
+            firstName: '孙',
+            lastName: '宇'
+         }).then(function (res) {
+            console.log(res);
+         }).catch(function (error) {
+            console.log(error);
+         });
+      }
+
+   </script>
+</body>
+
+</html>

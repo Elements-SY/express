@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>索引页</title>
+    <script src="https://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+    <script src="/js/spin.min.js"></script>
+</head>
+
+<body>
+    <h2>the page of index</h2>
+    <a href="javascript:;">本接请求后台使用了接口转发</a>
+    <button onclick="sendGet()">to send get request</button>
+    <div id="foo" style="width:100px; height:200px; margin-left:100px;"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // 设置loading动画参数
+        var opts = {
+            lines: 9, // The number of lines to draw
+            length: 0, // The length of each line
+            width: 10, // The line thickness
+            radius: 15, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            color: '#000', // #rgb or #rrggbb
+            speed: 1, // Rounds per second
+            trail: 60, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: 'auto', // Top position relative to parent in px
+            left: 'auto' // Left position relative to parent in px
+        };
+        // 获取loading容器
+        var target = document.getElementById('foo');
+        // 实例化loading
+        var spinner = new Spinner(opts)
+        axios.defaults.baseURL = 'http://localhost:3000';
+        // 发送请求
+        function sendGet() {
+            spinner.spin(target); // 开启loading
+            axios.get('/garbage', {
+                params: {
+                    keyword: '瓜子皮'
+                }
+            }).then(function (res) {
+                spinner.stop(); // 关闭loading
+                console.log(res);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+
+</html>
